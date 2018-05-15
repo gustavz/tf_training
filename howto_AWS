@@ -1,0 +1,84 @@
+## FIRST OF ALL: activate tensorflow environment
+source activate tensorflow_p27
+
+## Additional Requirements
+cython (pip)
+PIL (conda)
+pycocotools (github)
+
+
+## Pricing Details
+Hourly Fees
+Instance Type	                   Software	  EC2	  Total
+R3 Eight Extra Large                $0.00	$3.201	$3.201/hr
+M3 Extra Large	                    $0.00	$0.315	$0.315/hr
+R4 16 Extra Large	                $0.00	$5.122	$5.122/hr
+M5 Extra Large	                    $0.00	$0.23	$0.23/hr
+M4 Extra Large	                    $0.00	$0.24	$0.24/hr
+Graphics Two Extra Large	        $0.00	$0.772	$0.772/hr
+C3 Quadruple Extra Large	        $0.00	$1.032	$1.032/hr
+High I/O Quadruple Extra Large	    $0.00	$1.488	$1.488/hr
+T2 Large	                        $0.00	$0.107	$0.107/hr
+C4 Double Extra Large	            $0.00	$0.454	$0.454/hr
+G2 Eight Extra Large	            $0.00	$3.088	$3.088/hr
+M5 Large	                        $0.00	$0.115	$0.115/hr
+R3 Double Extra Large	            $0.00	$0.80	$0.80/hr
+C5 Large	                        $0.00	$0.097	$0.097/hr
+M5 Double Extra Large	            $0.00	$0.46	$0.46/hr
+X1 32 Extra Large	                $0.00	$18.674	$18.674/hr
+T2 Double Extra Large	            $0.00	$0.429	$0.429/hr
+T2 Extra Large	                    $0.00	$0.214	$0.214/hr
+High I/O Extra Large	            $0.00	$1.013	$1.013/hr
+C4 Eight Extra Large	            $0.00	$1.817	$1.817/hr
+M4 Quadruple Extra Large	        $0.00	$0.96	$0.96/hr
+M5 12 Extra Large	                $0.00	$2.76	$2.76/hr
+T2 Medium	                        $0.00	$0.054	$0.054/hr
+GPU Compute Extra Large	            $0.00	$1.326	$1.326/hr
+C4 Large	                        $0.00	$0.114	$0.114/hr
+T2 Small	                        $0.00	$0.027	$0.027/hr
+R4 Extra Large	                    $0.00	$0.32	$0.32/hr
+C4 Quadruple Extra Large	        $0.00	$0.909	$0.909/hr
+C4 Extra Large	                    $0.00	$0.227	$0.227/hr
+R4 Eight Extra Large	            $0.00	$2.561	$2.561/hr
+C5 Double Extra Large	            $0.00	$0.388	$0.388/hr
+Graphics 8 Extra Large	            $0.00	$2.85	$2.85/hr
+R4 Double Extra Large	            $0.00	$0.64	$0.64/hr
+High I/O Double Extra Large	        $0.00	$0.744	$0.744/hr
+C3 Large	                        $0.00	$0.129	$0.129/hr
+High I/O Quadruple Extra Large	    $0.00	$4.051	$4.051/hr
+High I/O Extra Large	            $0.00	$0.372	$0.372/hr
+D2 Quadruple Extra Large	        $0.00	$3.176	$3.176/hr
+R3 Quadruple Extra Large	        $0.00	$1.60	$1.60/hr
+M4 Ten Extra Large	                $0.00	$2.40	$2.40/hr
+C5 Quadruple Extra Large	        $0.00	$0.776	$0.776/hr
+High I/O Eight Extra Large	        $0.00	$2.976	$2.976/hr
+M4 Double Extra Large	            $0.00	$0.48	$0.48/hr
+GPU Compute 16 Extra Large	        $0.00	$21.216	$21.216/hr
+D2 Extra Large	                    $0.00	$0.794	$0.794/hr
+D2 Eight Extra Large	            $0.00	$6.352	$6.352/hr
+X1 16 Extra Large	                $0.00	$9.337	$9.337/hr
+C5 Extra Large	                    $0.00	$0.194	$0.194/hr
+Graphics 16 Extra Large	            $0.00	$5.70	$5.70/hr
+C5 Eighteen Extra Large	            $0.00	$3.492	$3.492/hr
+C5 Nine Extra Large	                $0.00	$1.746	$1.746/hr
+R4 Quadruple Extra Large	        $0.00	$1.28	$1.28/hr
+D2 Double Extra Large	            $0.00	$1.588	$1.588/hr
+M4 Large	                        $0.00	$0.12	$0.12/hr
+High I/O Double Extra Large	        $0.00	$2.026	$2.026/hr
+High I/O Eight Extra Large	        $0.00	$8.102	$8.102/hr
+R3 Extra Large	                    $0.00	$0.40	$0.40/hr
+R3 Large	                        $0.00	$0.20	$0.20/hr
+M5 24 Extra Large	                $0.00	$5.52	$5.52/hr
+M3 Double Extra Large	            $0.00	$0.632	$0.632/hr
+C3 Extra Large	                    $0.00	$0.258	$0.258/hr
+High I/O Large	                    $0.00	$0.186	$0.186/hr
+M3 Medium	                        $0.00	$0.079	$0.079/hr
+High I/O Sixteen Extra Large	    $0.00	$5.952	$5.952/hr
+R4 Large	                        $0.00	$0.16	$0.16/hr
+M4 Sixteen Extra Large	            $0.00	$3.84	$3.84/hr
+C3 Double Extra Large	            $0.00	$0.516	$0.516/hr
+M3 Large	                        $0.00	$0.158	$0.158/hr
+GPU Compute 8 Extra Large	        $0.00	$10.608	$10.608/hr
+Graphics 4 Extra Large	            $0.00	$1.425	$1.425/hr
+C3 Eight Extra Large	            $0.00	$2.064	$2.064/hr
+M5 Quadruple Extra Large	        $0.00	$0.92	$0.92/hr

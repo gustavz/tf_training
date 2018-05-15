@@ -76,7 +76,7 @@ TEST_IMAGE_DIR="${SCRATCH_DIR}/test2017"
 # Download the annotations.
 BASE_INSTANCES_URL="http://images.cocodataset.org/annotations"
 INSTANCES_FILE="annotations_trainval2017"
-#download_and_unzip ${BASE_INSTANCES_URL} ${INSTANCES_FILE}
+download_and_unzip ${BASE_INSTANCES_URL} ${INSTANCES_FILE}
 
 TRAIN_ANNOTATIONS_FILE="${SCRATCH_DIR}/annotations/instances_train2017.json"
 VAL_ANNOTATIONS_FILE="${SCRATCH_DIR}/annotations/instances_val2017.json"
@@ -84,7 +84,7 @@ VAL_ANNOTATIONS_FILE="${SCRATCH_DIR}/annotations/instances_val2017.json"
 # Download the test image info.
 BASE_IMAGE_INFO_URL="http://images.cocodataset.org/annotations"
 IMAGE_INFO_FILE="image_info_test2017"
-#download_and_unzip ${BASE_IMAGE_INFO_URL} ${IMAGE_INFO_FILE}
+download_and_unzip ${BASE_IMAGE_INFO_URL} ${IMAGE_INFO_FILE}
 
 TESTDEV_ANNOTATIONS_FILE="${SCRATCH_DIR}/annotations/image_info_test-dev2017.json"
 
@@ -100,3 +100,6 @@ python create_coco_tf_record.py \
   --val_annotations_file="${VAL_ANNOTATIONS_FILE}" \
   --testdev_annotations_file="${TESTDEV_ANNOTATIONS_FILE}" \
   --output_dir="${OUTPUT_DIR}"
+
+# Remove Zips
+rm -rf ${SCRATCH_DIR}/*.zip
