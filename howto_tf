@@ -3,8 +3,11 @@
 # From tensorflow/models/research
 protoc object_detection/protos/*.proto --python_out=.
 
-# From tensorflow/models/research
+# From tensorflow/models/research (BETTER: ADD IT TO ~/.bashrc and source it)
 export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+
+# AWS: Start tensorflow environment
+source activate tensorflow_p27
 
 ## TRAINING TENSORFLOW
 # Always reboot before new training
