@@ -3,6 +3,7 @@ This repository uses scripts provided by tensorflow's object detection api to tr
 <br />
 Additionally: As many local machine have limited computing capacity (especially GPU Memory)
 I added a script that automatically restarts the training and evaluation process from the last saved checkpoint if training got killed by some out of memory / oom or any other error.
+
 > Note: You may need to install several dependencies (you'll face them while running the scripts)
 
 ## Getting Started
