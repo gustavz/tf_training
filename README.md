@@ -7,6 +7,6 @@ I added a script that automatically restarts the training and evaluation process
 ## Getting Started
 - inside `dataset/` run `bash download_and_preprocess_mscoco.sh`
 - inside `mask_rcnn_mobilenet_v1_coco.config` modify all absolute paths to fit your directory structure
-- inside `train.sh` modify the path to your `models/research/object_detection` directory of the `TF_DIR` variable
-- run `train.sh`
+- inside `train.sh` modify the variables `MODEL` and `TF_DIR`
+- run `train.sh` or `train_simple.sh`
 - watch the numbers roll!
