@@ -6,10 +6,18 @@ cython (pip)
 PIL (conda)
 pycocotools (github)
 
-## To use Tensorboard set locale configuraten with:
+## Tensorboard
+# (only once) set locale configuration (on aws instance) with:
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 sudo dpkg-reconfigure locales
+# add Inbound Rule to your security group (on EC2 MANAGEMENT CONSOLE):
+Type : Custom TCP Rule
+Protocol: TCP
+Port Range: 6006 (or the port that you assigned to the visualization server)
+Source: Anywhere (0.0.0.0/0,::/0) 
+# on your local machine visit:
+http:// YourInstancePublicDNS:6006
 
 
 ## Pricing Details
