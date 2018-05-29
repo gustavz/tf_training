@@ -34,7 +34,7 @@ while true; do
 
     # Tensorboard % Evaluation
     echo "> start tensorboard and eval.py in separate terminals with 1m delay"
-    #gnome-terminal -x sh -c "sleep 1m;tensorboard --logdir=${ROOT_DIR}"
+    gnome-terminal -x sh -c "sleep 1m;tensorboard --logdir=${ROOT_DIR}"
     gnome-terminal -x sh -c "sleep 1m;python ${TF_DIR}/eval.py \
         --logtostderr \
         --pipeline_config_path=${CFG_FILE} \
