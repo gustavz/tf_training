@@ -5,13 +5,13 @@
 
 
 export MODEL="mask_rcnn_mobilenet_v1_coco"
-export TF_DIR="/home/ubuntu/tf_models/research/object_detection"
+export TF_DIR="${HOME}/tf_models/research/object_detection"
 export NUM_GPUS=1
 
 export ROOT_DIR="$(pwd)"
 export CKPT_DIR="${ROOT_DIR}/checkpoints/${MODEL}/train"
 export EVAL_DIR="${ROOT_DIR}/checkpoints/${MODEL}/eval"
-export CFG_FILE=${ROOT_DIR}/${MODEL}.config
+export CFG_FILE=${ROOT_DIR}/configs/${MODEL}.config
 
 echo "> Infinite Tensorflow Training Loop"
 while true; do
@@ -32,9 +32,8 @@ while true; do
     # update config
     sed -i s/${old}/${latest}/g ${CFG_FILE}
 
-    # Tensorboard % Evaluation
-    echo "> start tensorboard and eval.py in separate terminals with 1m delay"
-    gnome-terminal -x sh -c "sleep 1m;tensorboard --logdir=${ROOT_DIR}"
+    # Evaluation
+    echo "> start eval.py in separate terminals with 1m delay"
     gnome-terminal -x sh -c "sleep 1m;python ${TF_DIR}/eval.py \
         --logtostderr \
         --pipeline_config_path=${CFG_FILE} \

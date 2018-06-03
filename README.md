@@ -8,7 +8,7 @@ I added a script that automatically restarts the training and evaluation process
 
 ## Getting Started
 - inside `dataset/` run `bash download_and_preprocess_mscoco.sh`
-- inside `mask_rcnn_mobilenet_v1_coco.config` modify all absolute paths to fit your directory structure
+- inside the wished `configs/*.config` modify all absolute paths to fit your directory structure
 - inside `train.sh` modify the variables `MODEL`, `TF_DIR` and `NUM_GPUS`
 - run `train.sh`
-- watch the numbers roll!
+- watch the numbers get crunched!
