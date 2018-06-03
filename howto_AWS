@@ -19,6 +19,10 @@ Source: Anywhere (0.0.0.0/0,::/0)
 # on your local machine visit:
 http:// YourInstancePublicDNS:6006
 
+# Download Files from AWS to Local Machine
+scp -i PATH/TO/KEY AWS_USER@AWS_IP:PATH/TO/FILES .
+
+
 
 ## Pricing Details
 Hourly Fees
