@@ -223,7 +223,7 @@ if __name__ == '__main__':
     tf.gfile.MakeDirs(output_dir)
   val_output_path = os.path.join(output_dir, '{}val.record'.format(output_name))
   train_output_path = os.path.join(output_dir, '{}train.record'.format(output_name))
-  test_output_path = os.path.join(output_dir, '{}test.record'.format(output_name))
+  testdev_output_path = os.path.join(output_dir, '{}test.record'.format(output_name))
 
   _create_tf_record_from_coco_annotations(
       train_annotations_file,
