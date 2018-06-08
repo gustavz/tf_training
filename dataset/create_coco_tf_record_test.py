@@ -27,6 +27,7 @@ def create_tf_example(image,
                       annotations_list,
                       image_dir,
                       category_index,
+                      train_category_index=None,
                       include_masks=False):
   """Converts image and annotations to a tf.Example proto.
 
@@ -48,6 +49,7 @@ def create_tf_example(image,
     category_index: a dict containing COCO category information keyed
       by the 'id' field of each category.  See the
       label_map_util.create_category_index function.
+    train_category_index: Second Category Index with reduced Classes
     include_masks: Whether to include instance segmentations masks
       (PNG encoded) in the result. default: False.
   Returns:
@@ -69,6 +71,15 @@ def create_tf_example(image,
   image = PIL.Image.open(encoded_jpg_io)
   key = hashlib.sha256(encoded_jpg).hexdigest()
 
+  # find really used category ids
+  if train_category_index:
+      print("> using custom label_map")
+      used_category_ids = []
+      for id in category_index:
+          for idt in train_category_index:
+              if category_index[id]['name'] in train_category_index[idt].values():
+                  used_category_ids.append(id)
+
   xmin = []
   xmax = []
   ymin = []
@@ -80,9 +91,8 @@ def create_tf_example(image,
   encoded_mask_png = []
   num_annotations_skipped = 0
   for object_annotations in annotations_list:
-    #print(object_annotations['category_id'])
-    if object_annotations['category_id'] in category_index:
-        #print(object_annotations)
+    if object_annotations['category_id'] in used_category_ids:
+
         (x, y, width, height) = tuple(object_annotations['bbox'])
         if width <= 0 or height <= 0:
           num_annotations_skipped += 1
@@ -95,9 +105,19 @@ def create_tf_example(image,
         ymin.append(float(y) / image_height)
         ymax.append(float(y + height) / image_height)
         is_crowd.append(object_annotations['iscrowd'])
-        category_id = int(object_annotations['category_id'])
+
+        # Find Train ID matching the name
+        if train_category_index:
+            name = category_index[object_annotations['category_id']]['name']
+            for id in train_category_index:
+                if train_category_index[id]['name'] == name:
+                    category_id = id
+                    break
+        else:
+            category_id = int(object_annotations['category_id'])
+
         category_ids.append(category_id)
-        category_names.append(category_index[category_id]['name'].encode('utf8'))
+        category_names.append(train_category_index[category_id]['name'].encode('utf8'))
         area.append(object_annotations['area'])
 
         if include_masks:
@@ -147,8 +167,9 @@ def create_tf_example(image,
   return key, example, num_annotations_skipped
 
 
+
 def _create_tf_record_from_coco_annotations(
-    annotations_file, image_dir, output_path, include_masks,label_path=None,max_classes=None):
+    annotations_file, image_dir, output_path, include_masks,label_path=None):
   """Loads COCO annotation json files and converts to tf.Record format.
 
   Args:
@@ -162,13 +183,14 @@ def _create_tf_record_from_coco_annotations(
     groundtruth_data = json.load(fid)
     images = groundtruth_data['images']
 
-    if label_path and max_classes:
+    # Workaround Category Index to train on reduced classes
+    train_category_index = None
+    if label_path:
         label_map = label_map_util.load_labelmap(label_path)
-        categories=label_map_util.convert_label_map_to_categories(label_map,max_classes,use_display_name=True)
-        category_index = label_map_util.create_category_index(categories)
-    else:
-        category_index = label_map_util.create_category_index(groundtruth_data['categories'])
-    #print(category_index[1]['name'])
+        categories=label_map_util.convert_label_map_to_categories(label_map,90,use_display_name=True)
+        train_category_index = label_map_util.create_category_index(categories)
+
+    category_index = label_map_util.create_category_index(groundtruth_data['categories'])
 
     annotations_index = {}
     if 'annotations' in groundtruth_data:
@@ -196,7 +218,7 @@ def _create_tf_record_from_coco_annotations(
         tf.logging.info('On image %d of %d', idx, len(images))
       annotations_list = annotations_index[image['id']]
       _, tf_example, num_annotations_skipped = create_tf_example(
-          image, annotations_list, image_dir, category_index, include_masks)
+          image, annotations_list, image_dir, category_index, train_category_index, include_masks)
       total_num_annotations_skipped += num_annotations_skipped
       writer.write(tf_example.SerializeToString())
     writer.close()
@@ -214,37 +236,34 @@ if __name__ == '__main__':
   testdev_annotations_file=CWD+"/coco/annotations/image_info_test-dev2017.json"
   include_masks=True
 
-  max_classes=1
-  output_name="person_"
-  label_path=CWD+"/pers_coco_label_map.pbtxt"
+  output_name="red_"
+  label_path=CWD+"/red_coco_label_map.pbtxt"
   output_dir=CWD
 
   if not tf.gfile.IsDirectory(output_dir):
     tf.gfile.MakeDirs(output_dir)
   val_output_path = os.path.join(output_dir, '{}val.record'.format(output_name))
   train_output_path = os.path.join(output_dir, '{}train.record'.format(output_name))
-  testdev_output_path = os.path.join(output_dir, '{}test.record'.format(output_name))
+  testdev_output_path = os.path.join(output_dir, '{}testdev.record'.format(output_name))
+
 
   _create_tf_record_from_coco_annotations(
       train_annotations_file,
       train_image_dir,
       train_output_path,
       include_masks,
-      label_path,
-      max_classes)
+      label_path)
 
   _create_tf_record_from_coco_annotations(
       val_annotations_file,
       val_image_dir,
       val_output_path,
       include_masks,
-      label_path,
-      max_classes)
+      label_path)
 
   _create_tf_record_from_coco_annotations(
       testdev_annotations_file,
       test_image_dir,
       testdev_output_path,
       include_masks,
-      label_path,
-      max_classes)
+      label_path)
