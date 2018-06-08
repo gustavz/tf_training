@@ -73,7 +73,6 @@ def create_tf_example(image,
 
   # find really used category ids
   if train_category_index:
-      print("> using custom label_map")
       used_category_ids = []
       for id in category_index:
           for idt in train_category_index:
