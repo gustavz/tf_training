@@ -13,7 +13,7 @@ export FIRST_RUN=false
 export ROOT_DIR="$(pwd)"
 export CKPT_DIR="${ROOT_DIR}/checkpoints/${MODEL}/train"
 export EVAL_DIR="${ROOT_DIR}/checkpoints/${MODEL}/eval"
-export CFG_FILE=${ROOT_DIR}/${MODEL}.config
+export CFG_FILE=${ROOT_DIR}"/configs/"${MODEL}.config
 
 echo "> Infinite Tensorflow Training Loop"
 while true; do
