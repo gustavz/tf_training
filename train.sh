@@ -4,7 +4,7 @@
 # www.github.com/GustavZ
 
 
-export MODEL="mask_rcnn_mobilenet_v1_512_red"
+export MODEL="mask_rcnn_mobilenet_v1_512_coco"
 export TF_DIR="${HOME}/workspace/tf_models/research/object_detection"
 export NUM_GPUS=2
 export EVAL_ON_CPU=true
