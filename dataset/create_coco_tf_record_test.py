@@ -235,7 +235,7 @@ if __name__ == '__main__':
   testdev_annotations_file=CWD+"/coco/annotations/image_info_test-dev2017.json"
   include_masks=True
 
-  output_name="red_"
+  output_name="red_coco_"
   label_path=CWD+"/red_coco_label_map.pbtxt"
   output_dir=CWD
 

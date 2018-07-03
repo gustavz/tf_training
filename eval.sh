@@ -24,4 +24,6 @@ while true; do
         --eval_dir=${EVAL_DIR} \
         --run_on_CPU_only=${EVAL_ON_CPU} \
         --evaluate_all_checkpoints=${EVAL_ALL_CKPTS}
+    echo "> sleep 30secs, time to exit"
+    sleep 30
 done

@@ -8,10 +8,12 @@ pycocotools (github)
 
 ## Tensorboard
 # (only once) set locale configuration (on aws instance) with:
+sudo nano /etc/profile
+# and add at the very end
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
-sudo dpkg-reconfigure locales
-# add Inbound Rule to your security group (on EC2 MANAGEMENT CONSOLE):
+
+# if necessary add Inbound Rule to your security group (on EC2 MANAGEMENT CONSOLE):
 Type : Custom TCP Rule
 Protocol: TCP
 Port Range: 6006 (or the port that you assigned to the visualization server)

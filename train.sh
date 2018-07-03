@@ -21,7 +21,7 @@ while true; do
     if [ ${FIRST_RUN} = false ] ; then
         echo "> update checkpoint"
         # find old checkpoint
-        old=`sed -n '/fine_tune_checkpoint/p' ${CFG_FILE}` # find checkpoint line
+        old=`sed -n '/fine_tune_checkpoint:/p' ${CFG_FILE}` # find checkpoint line
         old=${old#*"model."} #strip prefix
         old=${old%\"} #strip suffix
         echo "> old: ${old}"
@@ -59,7 +59,6 @@ while true; do
 
     # wait some time and kill remaining processes
     echo "> waiting 1 minute before restart"
-
     sleep 30
     killall python
     killall /usr/bin/python
